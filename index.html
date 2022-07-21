@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=\, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Fetch JSON from API</title>
+</head>
+
+<body>
+    <h1>Recommendations</h1>
+
+    <p>
+        Activity: <span id="activity0"></span><br />
+        Type: <span id="type0"></span><br />
+        Participant Number: <span id="participants0"></span><br />
+        Price: <span id="price0"></span><br />
+        Link: <span id="link0"></span><br />
+        Key: <span id="key0"></span><br />
+        Accessibility: <span id="accessibility0"></span><br />
+    </p>
+
+    <p>
+        Activity: <span id="activity1"></span><br />
+        Type: <span id="type1"></span><br />
+        Participant Number: <span id="participants1"></span><br />
+        Price: <span id="price1"></span><br />
+        Link: <span id="link1"></span><br />
+        Key: <span id="key1"></span><br />
+        Accessibility: <span id="accessibility1"></span><br />
+    </p>
+
+    <p>
+        Activity: <span id="activity2"></span><br />
+        Type: <span id="type2"></span><br />
+        Participant Number: <span id="participants2"></span><br />
+        Price: <span id="price2"></span><br />
+        Link: <span id="link2"></span><br />
+        Key: <span id="key2"></span><br />
+        Accessibility: <span id="accessibility2"></span><br />
+    </p>
+
+    <p>
+        Activity: <span id="activity3"></span><br />
+        Type: <span id="type3"></span><br />
+        Participant Number: <span id="participants3"></span><br />
+        Price: <span id="price3"></span><br />
+        Link: <span id="link3"></span><br />
+        Key: <span id="key3"></span><br />
+        Accessibility: <span id="accessibility3"></span><br />
+    </p>
+
+    <p>
+        Activity: <span id="activity4"></span><br />
+        Type: <span id="type4"></span><br />
+        Participant Number: <span id="participants4"></span><br />
+        Price: <span id="price4"></span><br />
+        Link: <span id="link4"></span><br />
+        Key: <span id="key4"></span><br />
+        Accessibility: <span id="accessibility4"></span><br />
+    </p>
+
+    <p>
+        Activity: <span id="activity5"></span><br />
+        Type: <span id="type5"></span><br />
+        Participant Number: <span id="participants5"></span><br />
+        Price: <span id="price5"></span><br />
+        Link: <span id="link5"></span><br />
+        Key: <span id="key5"></span><br />
+        Accessibility: <span id="accessibility5"></span><br />
+    </p>
+
+    <script>
+
+        const RecClass = class {
+            constructor(recNum, url, idtags) {
+                this.recNum = recNum;
+                this.url = url;
+                this.idtags = idtags;
+            }
+
+            get recNum() {
+                return this._recNum;
+            }
+
+            set recNum(recNum) {
+                this._recNum = recNum;
+            }
+
+            get url() {
+                return this._url;
+            }
+
+            set url(url) {
+                this._url = url;
+            }
+
+            get idtags() {
+                return this._idtags;
+            }
+
+            set idtags(idtags) {
+                this._idtags = idtags;
+            }
+
+        }
+
+        const fetchRecommendations = async function (recClass) {
+            for (let i = 0; i < recClass.recNum; i++) {
+                await fetch(recClass.url)
+                    .then(response => response.json())
+                    .then(data => {
+                        for (let j = 0; j < recClass.idtags.length; j++) {
+                            var stringId = `${recClass.idtags[j]}${i}`;
+                            document.getElementById(stringId).innerHTML = data[recClass.idtags[j]];
+                        }
+                    })
+                    .catch(error => console.log("Error: " + error));
+            }
+        }
+
+        const recClass = new RecClass
+        recClass.recNum = 6;
+        recClass.url = "https://www.boredapi.com/api/activity";
+        recClass.idtags = ["activity", "type", "participants", "price", "link", "key", "accessibility"];
+        fetchRecommendations(recClass);
+    </script>
+</body>
+
+</html>
