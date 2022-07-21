@@ -15,8 +15,8 @@
         Activity: <span id="activity0"></span><br />
         Type: <span id="type0"></span><br />
         Participant Number: <span id="participants0"></span><br />
-        Price: <span id="price0"></span><br />
-        Link: <span id="link0"></span><br />
+        Price: <span id="price0">Free</span><br />
+        Link: <span id="link0">No Link Available</span><br />
         Key: <span id="key0"></span><br />
         Accessibility: <span id="accessibility0"></span><br />
     </p>
@@ -25,8 +25,8 @@
         Activity: <span id="activity1"></span><br />
         Type: <span id="type1"></span><br />
         Participant Number: <span id="participants1"></span><br />
-        Price: <span id="price1"></span><br />
-        Link: <span id="link1"></span><br />
+        Price: <span id="price1">Free</span><br />
+        Link: <span id="link1">No Link Available</span><br />
         Key: <span id="key1"></span><br />
         Accessibility: <span id="accessibility1"></span><br />
     </p>
@@ -35,8 +35,8 @@
         Activity: <span id="activity2"></span><br />
         Type: <span id="type2"></span><br />
         Participant Number: <span id="participants2"></span><br />
-        Price: <span id="price2"></span><br />
-        Link: <span id="link2"></span><br />
+        Price: <span id="price2">Free</span><br />
+        Link: <span id="link2">No Link Available</span><br />
         Key: <span id="key2"></span><br />
         Accessibility: <span id="accessibility2"></span><br />
     </p>
@@ -45,8 +45,8 @@
         Activity: <span id="activity3"></span><br />
         Type: <span id="type3"></span><br />
         Participant Number: <span id="participants3"></span><br />
-        Price: <span id="price3"></span><br />
-        Link: <span id="link3"></span><br />
+        Price: <span id="price3">Free</span><br />
+        Link: <span id="link3">No Link Available</span><br />
         Key: <span id="key3"></span><br />
         Accessibility: <span id="accessibility3"></span><br />
     </p>
@@ -55,8 +55,8 @@
         Activity: <span id="activity4"></span><br />
         Type: <span id="type4"></span><br />
         Participant Number: <span id="participants4"></span><br />
-        Price: <span id="price4"></span><br />
-        Link: <span id="link4"></span><br />
+        Price: <span id="price4">Free</span><br />
+        Link: <span id="link4">No Link Available</span><br />
         Key: <span id="key4"></span><br />
         Accessibility: <span id="accessibility4"></span><br />
     </p>
@@ -65,8 +65,8 @@
         Activity: <span id="activity5"></span><br />
         Type: <span id="type5"></span><br />
         Participant Number: <span id="participants5"></span><br />
-        Price: <span id="price5"></span><br />
-        Link: <span id="link5"></span><br />
+        Price: <span id="price5">Free</span><br />
+        Link: <span id="link5">No Link Available</span><br />
         Key: <span id="key5"></span><br />
         Accessibility: <span id="accessibility5"></span><br />
     </p>
@@ -113,7 +113,9 @@
                     .then(data => {
                         for (let j = 0; j < recClass.idtags.length; j++) {
                             var stringId = `${recClass.idtags[j]}${i}`;
-                            document.getElementById(stringId).innerHTML = data[recClass.idtags[j]];
+                            if (data[recClass.idtags[j]]) {
+                                document.getElementById(stringId).innerHTML = data[recClass.idtags[j]];
+                            }
                         }
                     })
                     .catch(error => console.log("Error: " + error));
