@@ -72,38 +72,40 @@
     </p>
 
     <script>
+        const makeClass = function () {
+            const RecClass = class {
+                constructor(recNum, url, idtags) {
+                    this.recNum = recNum;
+                    this.url = url;
+                    this.idtags = idtags;
+                }
 
-        const RecClass = class {
-            constructor(recNum, url, idtags) {
-                this.recNum = recNum;
-                this.url = url;
-                this.idtags = idtags;
-            }
+                get recNum() {
+                    return this._recNum;
+                }
 
-            get recNum() {
-                return this._recNum;
-            }
+                set recNum(recNum) {
+                    this._recNum = recNum;
+                }
 
-            set recNum(recNum) {
-                this._recNum = recNum;
-            }
+                get url() {
+                    return this._url;
+                }
 
-            get url() {
-                return this._url;
-            }
+                set url(url) {
+                    this._url = url;
+                }
 
-            set url(url) {
-                this._url = url;
-            }
+                get idtags() {
+                    return this._idtags;
+                }
 
-            get idtags() {
-                return this._idtags;
-            }
+                set idtags(idtags) {
+                    this._idtags = idtags;
+                }
 
-            set idtags(idtags) {
-                this._idtags = idtags;
-            }
-
+            };
+            return RecClass;
         }
 
         const fetchRecommendations = async function (recClass) {
@@ -122,7 +124,8 @@
             }
         }
 
-        const recClass = new RecClass
+        const makeRecClass = makeClass();
+        const recClass = new makeRecClass();
         recClass.recNum = 6;
         recClass.url = "https://www.boredapi.com/api/activity";
         recClass.idtags = ["activity", "type", "participants", "price", "link", "key", "accessibility"];
